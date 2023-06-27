@@ -90,9 +90,6 @@ impl TicTacToe4D {
     }
 }
 
-use std::time::Instant;
-
-// Rest of the code...
 
 fn main() {
     let mut game = TicTacToe4D::new();
