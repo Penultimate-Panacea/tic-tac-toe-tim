@@ -1,5 +1,8 @@
-const SIZE: usize = 4;
+use text_io::read;
 
+const SIZE: usize = 3;
+
+#[derive(PartialEq, Debug)]
 enum Player {
     X,
     O,
@@ -90,8 +93,24 @@ impl TicTacToe4D {
     }
 }
 
+fn get_move() -> Vec<usize> {
+    let input: String = read!();
+    let moves: std::str::Split<'_, &str> = input.split(","); 
+    let mut move_vec:Vec<usize> = vec![0,0,0,0];
+    moves.collect::<Vec<_>>().into_iter().for_each(|gamemove_ptr| {
+        let gamemove = todo!("&str into usize" );
+        move_vec.push(gamemove);
+    });
+    move_vec
+}
 
 fn main() {
     let mut game = TicTacToe4D::new();
-
+    while game.check_winner() == None {
+        println!("{:?}", game.board);
+        println!("It is {:?}'s turn.", game.current_player);
+        println!("Enter x,y,z,w coordinates of move:");
+        let game_move = get_move();
+        game.make_move(game_move[0], game_move[1], game_move[2], game_move[3]);
+    }
 }
